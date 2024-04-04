@@ -1,3 +1,7 @@
-input{
-    
+input, select, button{
+    padding: 20px;
+}
+
+.container {
+    border: 1px solid #aaa;
 }
