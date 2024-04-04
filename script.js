@@ -1,5 +1,5 @@
 let valoresConversao = {
-    real  : {
+    real: {
         dolar: 0.27,
         euro: 0.18
     },
@@ -24,11 +24,20 @@ function converter(){
 
     let conversao = valorUsuario * valoresConversao[moedaOrigem][moedaDestino]
 
+    let paragrafoResultado = document.getElementById("resultado");
+    paragrafoResultado.textContent = conversao;
+
+
     console.log(conversao);
+}
 
-    // console.log(moedaOrigem);
-    // console.log(moedaDestino);
-    // console.log(valorUsuario);
+function inverter(){
+    let moeda1 = document.getElementById("moeda1").value;
+    let moeda2 = document.getElementById("moeda2").value;
 
+    document.getElementById("moeda1").value = moeda2;
+    document.getElementById("moeda2").value = moeda1;
 
+    console.log(moeda1);
+    console.log(moeda2);
 }
