@@ -1,17 +1,19 @@
 let valoresConversao = {
     real  : {
-        dolar: 5.03,
-        euro: 5.47
+        dolar: 0.27,
+        euro: 0.18
     },
     dolar: {
-        real: 0.27,
-        euro: 0.92
+        real: 5.03,
+        euro: 1.09
     },
     euro: {
-        real: 0.18,
-        dolar:  1.09
+        real: 5.47,
+        dolar:  0.92
     }
 }
+
+valoresConversao["real"]["dolar"][""]
 
 
 function converter(){
@@ -20,7 +22,13 @@ function converter(){
     let moedaOrigem  = document.getElementById("moeda1").value;
     let moedaDestino  = document.getElementById("moeda2").value;
 
-    console.log(moedaOrigem);
-    console.log(moedaDestino);
-    console.log(valorUsuario);
+    let conversao = valorUsuario * valoresConversao[moedaOrigem][moedaDestino]
+
+    console.log(conversao);
+
+    // console.log(moedaOrigem);
+    // console.log(moedaDestino);
+    // console.log(valorUsuario);
+
+
 }
