@@ -9,7 +9,7 @@
 <body>
     <div class="container">
     <h1 id="titulo">Conversão de Moedas</h1>
-    <input type="text" id="valor-usuario">
+    <input type="text" id="valor-usuario" placeholder="Digite o valor">
     <select name="moeda1" id="moeda1">
         <option value="real">Real</option>
         <option value="dolar">Dólar</option>
@@ -21,6 +21,7 @@
         <option value="dolar" selected>Dólar</option>
         <option value="euro">Euro</option>
     </select>
+    <button onclick="limpar()">Limpar</button>
     <button onclick="converter()">Converter</button>
     <p id="resultado">Resultado</p>
     </div>

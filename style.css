@@ -10,12 +10,13 @@ select{
 
 button{
     padding: 40px;
-    
+    margin-top: 50px;
 }
 
 .container {
-    border: 1px solid #aaa;
-    padding: 50px;
+    border: 0px solid #aaa;
+    
+    padding: 150px;
     text-align: center;
     margin-top: 50px;
 }

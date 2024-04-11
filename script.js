@@ -57,3 +57,13 @@ function inverter(){
     console.log(moeda1);
     console.log(moeda2);
 }
+
+function limpar(){
+    let valorUsuario = document.getElementById("valor-usuario");
+    let resultado = document.getElementById("resultado");
+
+    valorUsuario.value = "";
+    
+    resultado.textContent = "";
+
+}
