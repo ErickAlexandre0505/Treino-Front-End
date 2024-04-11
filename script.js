@@ -22,13 +22,29 @@ function converter(){
     let moedaOrigem  = document.getElementById("moeda1").value;
     let moedaDestino  = document.getElementById("moeda2").value;
 
+    if(moedaOrigem == moedaDestino){
+        alert("As moedas são iguais, selecione dois tipos de moedas diferentes")
+        return;
+    }
+
     let conversao = valorUsuario * valoresConversao[moedaOrigem][moedaDestino]
 
+    let simbolo = "";
+    if(moedaDestino == "real"){
+        simbolo = "R$"
+    }
+
+    if(moedaDestino == "dolar"){
+        simbolo = "US$"
+    }
+
+    if(moedaDestino == "euro"){
+        simbolo = "€"
+    }
+
     let paragrafoResultado = document.getElementById("resultado");
-    paragrafoResultado.textContent = conversao;
+    paragrafoResultado.textContent = simbolo + conversao.toFixed(2);
 
-
-    console.log(conversao);
 }
 
 function inverter(){
