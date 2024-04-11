@@ -15,6 +15,15 @@ let valoresConversao = {
 
 valoresConversao["real"]["dolar"][""]
 
+let valorUsuario = document.getElementById("valor-usuario")
+valorUsuario.addEventListener("keypress", function(event){
+    if(event.key == "Enter"){
+        converter();
+    }
+})
+
+
+
 
 function converter(){
     let valorUsuario = document.getElementById("valor-usuario").value;
