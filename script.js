@@ -15,21 +15,16 @@ let valoresConversao = {
 
 valoresConversao["real"]["dolar"][""]
 
-let valorUsuario = document.getElementById("valor-usuario")
-valorUsuario.addEventListener("keypress", function(event){
-    if(event.key == "Enter"){
-        converter();
-    }
-})
-
-
-
-
 function converter(){
     let valorUsuario = document.getElementById("valor-usuario").value;
 
     let moedaOrigem  = document.getElementById("moeda1").value;
     let moedaDestino  = document.getElementById("moeda2").value;
+
+    if (valorUsuario == ""){
+        alert("Valor não pode ser vazio")
+        return;
+    }
 
     if(moedaOrigem == moedaDestino){
         alert("As moedas são iguais, selecione dois tipos de moedas diferentes")
@@ -55,6 +50,21 @@ function converter(){
     paragrafoResultado.textContent = simbolo + conversao.toFixed(2);
 
 }
+
+let valorUsuario = document.getElementById("valor-usuario")
+valorUsuario.addEventListener("keypress", function(event){
+    if(event.key == "Enter"){
+        converter();
+    }
+
+    if(event.ctrlKey == true && event.code == "KeyI"){
+        inverter();
+    }
+
+    if(event.ctrlKey == true && event.code == "KeyL"){
+        limpar();
+    }
+})
 
 function inverter(){
     let moeda1 = document.getElementById("moeda1").value;
