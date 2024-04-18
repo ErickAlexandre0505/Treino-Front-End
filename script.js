@@ -28,8 +28,9 @@ let botaoAceitar = document.getElementById("aceita-mensagem-usuario");
 botaoAceitar.addEventListener("click", aceitar)
 
 function aceitar(){
-    alert("Usuario aceitou os termos do site");
-    
+    let divMensagemUsuario = document.getElementById("container-mensagem-usuario");
+    divMensagemUsuario.classList.add("oculto");
+
 }
 
 
