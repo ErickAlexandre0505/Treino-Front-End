@@ -21,7 +21,7 @@ botaoConverter.addEventListener("click", converter);
 let botaoLimpar = document.getElementById("botao-limpar");
 botaoLimpar.addEventListener("click", limpar)
 
-let botaoInverter = document.getElementById("botao-inverter")
+let botaoInverter = document.getElementById("botao-inverter");
 botaoInverter.addEventListener("click", inverter)
 
 let botaoAceitar = document.getElementById("aceita-mensagem-usuario");
@@ -31,10 +31,15 @@ if(localStorage.getItem("aceitouCookie") == "1"){
     aceitar();
 }
 
+function salvaResultadoHistorico(){
+    let conversaoEmJson = JSON.stringify(conversao);
+    localStorage.setItem("Historico", conversao);
+
+}
+
 function aceitar(){
     let divMensagemUsuario = document.getElementById("container-mensagem-usuario");
     divMensagemUsuario.classList.add("oculto");
-
     localStorage.setItem("aceitouCookie", "1")
 }
 
@@ -71,7 +76,16 @@ function converter(){
     }
 
     let paragrafoResultado = document.getElementById("resultado");
-    paragrafoResultado.textContent = simbolo + conversao.toFixed(2);
+    paragrafoResultado.textContent = simbolo + " " + conversao.toFixed(2);
+
+    let resultadoDaConversao = {
+        valor: valorUsuario,
+        moeda1: moedaOrigem,
+        moeda2: moedaDestino,
+        resultado: conversao
+    }
+
+    salvaResultadoHistorico(resultadoDaConversao);
 
 }
 
