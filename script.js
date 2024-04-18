@@ -27,10 +27,15 @@ botaoInverter.addEventListener("click", inverter)
 let botaoAceitar = document.getElementById("aceita-mensagem-usuario");
 botaoAceitar.addEventListener("click", aceitar)
 
+if(localStorage.getItem("aceitouCookie") == "1"){
+    aceitar();
+}
+
 function aceitar(){
     let divMensagemUsuario = document.getElementById("container-mensagem-usuario");
     divMensagemUsuario.classList.add("oculto");
 
+    localStorage.setItem("aceitouCookie", "1")
 }
 
 
