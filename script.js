@@ -15,6 +15,24 @@ let valoresConversao = {
 
 valoresConversao["real"]["dolar"][""]
 
+let botaoConverter = document.getElementById("botao-converter");
+botaoConverter.addEventListener("click", converter);
+
+let botaoLimpar = document.getElementById("botao-limpar");
+botaoLimpar.addEventListener("click", limpar)
+
+let botaoInverter = document.getElementById("botao-inverter")
+botaoInverter.addEventListener("click", inverter)
+
+let botaoAceitar = document.getElementById("aceita-mensagem-usuario");
+botaoAceitar.addEventListener("click", aceitar)
+
+function aceitar(){
+    alert("Usuario aceitou os termos do site");
+    
+}
+
+
 function converter(){
     let valorUsuario = document.getElementById("valor-usuario").value;
 

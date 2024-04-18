@@ -15,17 +15,21 @@
         <option value="dolar">Dólar</option>
         <option value="euro">Euro</option>
     </select>
-    <button onclick="inverter()">Inverter</button>
+    <button id="botao-inverter">Inverter</button>
     <select name="moeda2" id="moeda2">
         <option value="real">Real</option>
         <option value="dolar" selected>Dólar</option>
         <option value="euro">Euro</option>
     </select>
-    <button onclick="limpar()">Limpar</button>
-    <button onclick="converter()">Converter</button>
-    <p id="resultado">Resultado</p>
+    <button id="botao-converter">Converter</button>
+    <button id="botao-limpar">Limpar</button>
+    <p id="resultado"></p>
     </div>
 
+    <div class="mensagem-usuario">
+        <p>Nosso Site processa dados pessoais. Aceita continuar?</p>
+        <button id="aceita-mensagem-usuario">Aceitar</button>
+    </div>
     
     <script src="script.js"></script>
 </body>
