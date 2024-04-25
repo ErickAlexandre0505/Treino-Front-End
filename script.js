@@ -1,4 +1,4 @@
-let valoresConversao = {
+ let valoresConversao = {
     real: {
         dolar: 0.27,
         euro: 0.18
@@ -31,21 +31,27 @@ if(localStorage.getItem("aceitouCookie") == "1"){
     aceitar();
 }
 
-function salvaResultadoHistorico(){
+function salvaResultadoHistorico(conversao){
     // Adicionar resultado ao array de historico e salvar o array de historico
-    let historico = [];
-    let conversaoEmJson = JSON.stringify(conversao);
-    localStorage.setItem("Historico", conversao);
+    let historico = recuperaHistoricoDeConversoes();
 
-}
+    historico.push(conversao);
 
-function salvarHistorico(){
-    localStorage.setItem("historico", JSON,stringify(historico));
+    let conversaoEmJson = JSON.stringify(historico);
+    localStorage.setItem("Historico", historico);
+
 }
 
 function recuperaHistoricoDeConversoes(){
     let historico = localStorage.getItem("historico");
+
+    if(!historico){
+        return [];
+    }
+
+
     let historicoConvertido = JSON.parse(historico);
+    return historicoConvertido;
 
     // Retornar o array com historico de conversões 
 
