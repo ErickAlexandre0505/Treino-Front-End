@@ -147,3 +147,13 @@ function limpar(){
     resultado.textContent = "";
 
 }
+
+function buscarAPI(){
+    let url = "https://economia.awesome.com.br/json/last/USD-BRL"
+    fetch(url).then(function (data){
+        if(data.status == 200){
+            console.log("retorno ok!");
+        }
+        console.log(data);
+    }).catch();
+}
