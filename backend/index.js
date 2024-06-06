@@ -35,8 +35,38 @@ aplicacao.get("/conversao/:moedas", "/moedas",  (req, res) => {
     console.log(moeda1);
     console.log(moeda2);
 
-    const resultado = {
-        moedaOrigem: moeda1,
-        moedaDestino: moeda2
-    };
+    // Fazer o processo de conversão e retornar o frontend
+    converter = {};
+    req.status(200).json(converter);
+
+});
+
+function buscaConversaoAPI(moedaOrigem, moedaDestino){
+    let urlApi = "https://economia.awesomeapi.com.br/last/";
+    urlApi = urlApi + moedaOrigem + "-" + moedaDestino;
+
+    // Recuperar o valor dado fora da função 
+    // Pode passar o fetch como retorno da função 
+    // return antes do fetch 
+
+    return fetch(urlApi).then(function(response){
+        if(response.status = 200){
+            console.log("A chamada foi feita com sucesso");
+        }
+        return response.json();
+    }).then(function(data){
+        let objetoEmJson = JSON.stringify(data);
+        responseAPI = data[moedaOrigem + moedaDestino]["ask"];
+        return responseAPI;
+    }).catch(function(error){
+        console.log(error);
+    })
+}
+
+aplicacao.METODO('/historico', (req, res) => {
+
+    // Logica da rota aqui
+
+    
+
 });

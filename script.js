@@ -31,7 +31,7 @@ if(localStorage.getItem("aceitouCookie") == "1"){
     aceitar();
 }
 
-function salvaResultadoHistorico(conversao){
+/*function salvaResultadoHistorico(conversao){
     // Adicionar resultado ao array de historico e salvar o array de historico
     let historico = recuperaHistoricoDeConversoes();
 
@@ -58,7 +58,7 @@ function recuperaHistoricoDeConversoes(){
     historico.push(historicoConvertido);
     return historicoConvertido;
 
-}
+}*/
 
 function aceitar(){
     let divMensagemUsuario = document.getElementById("container-mensagem-usuario");
@@ -66,51 +66,6 @@ function aceitar(){
     localStorage.setItem("aceitouCookie", "1")
 }
 
-
-function converter(){
-    let valorUsuario = document.getElementById("valor-usuario").value;
-
-    let moedaOrigem  = document.getElementById("moeda1").value;
-    let moedaDestino  = document.getElementById("moeda2").value;
-
-    if (valorUsuario == ""){
-        alert("Valor não pode ser vazio")
-        return;
-    }
-
-    if(moedaOrigem == moedaDestino){
-        alert("As moedas são iguais, selecione dois tipos de moedas diferentes")
-        return;
-    }
-
-    let conversao = valorUsuario * valoresConversao[moedaOrigem][moedaDestino]
-
-    let simbolo = "";
-    if(moedaDestino == "real"){
-        simbolo = "R$"
-    }
-
-    if(moedaDestino == "dolar"){
-        simbolo = "US$"
-    }
-
-    if(moedaDestino == "euro"){
-        simbolo = "€"
-    }
-
-    let paragrafoResultado = document.getElementById("resultado");
-    paragrafoResultado.textContent = simbolo + " " + conversao.toFixed(2);
-
-    let resultadoDaConversao = {
-        valor: valorUsuario,
-        moeda1: moedaOrigem,
-        moeda2: moedaDestino,
-        resultado: conversao
-    }
-
-    salvaResultadoHistorico(resultadoDaConversao);
-
-}
 
 let valorUsuario = document.getElementById("valor-usuario")
 valorUsuario.addEventListener("keypress", function(event){
@@ -148,12 +103,96 @@ function limpar(){
 
 }
 
-function buscarAPI(){
-    let url = "https://economia.awesome.com.br/json/last/USD-BRL"
+function converter(){
+
+    let HistoricoRecuperado = recuperaHistoricoDeConversoes();
+
+    let valorUsuario = document.getElementById("valor-usuario").value;
+
+    let moedaOrigem  = document.getElementById("moeda1").value;
+    let moedaDestino  = document.getElementById("moeda2").value;
+
+    if (valorUsuario == ""){
+        alert("Valor não pode ser vazio")
+        return;
+    }
+
+    if(moedaOrigem == moedaDestino){
+        alert("As moedas são iguais, selecione dois tipos de moedas diferentes")
+        return;
+    }
+
+    /*let conversao = valorUsuario * valoresConversao[moedaOrigem][moedaDestino]
+
+    let simbolo = "";
+    if(moedaDestino == "real"){
+        simbolo = "R$"
+    }
+
+    if(moedaDestino == "dolar"){
+        simbolo = "US$"
+    }
+
+    if(moedaDestino == "euro"){
+        simbolo = "€"
+    }
+
+    let paragrafoResultado = document.getElementById("resultado");
+    paragrafoResultado.textContent = simbolo + " " + conversao.toFixed(2);
+
+    let resultadoDaConversao = {
+        valor: valorUsuario,
+        moeda1: moedaOrigem,
+        moeda2: moedaDestino,
+        resultado: conversao
+    }
+
+    salvaResultadoHistorico(resultadoDaConversao);*/
+
+}
+
+buscaConversaoAPI(relacaoMoedas[moeda1], relacaoNomesMoedas[moeda2])
+.then(function(fatorConversao){
+        console.log("data é " + fatorConversao);
+        let simbolo = valoresConversao[moeda2]["simbolo"];
+        let resultado = valorUsuario * fatorConversao;
+        let paragrafoResultado = document.getElementById("resultado");
+        paragrafoResultado.textContent = simbolo + " " + resultado.toFixed(2);
+
+        let objetoResultado = {
+            valorUsuario: valorUsuario,
+            valorMoeda1: moeda1,
+            valorMoeda2: moeda2,
+            valorResultado: resultado.toFixed(2)
+        }
+        salvarHistorico(objetoResultado);
+    });
+
+    /*let url = "https://economia.awesome.com.br/json/last/USD-BRL"
     fetch(url).then(function (data){
         if(data.status == 200){
             console.log("retorno ok!");
         }
         console.log(data);
     }).catch();
+}*/
+
+function recuperaHistorico(){
+    let historico = localStorage.getItem("historico");
+
+    if(!historico){
+        return[];
+    }
+
+    let historicoObjeto = JSON.parse(historico);
+    
+    return historicoObjeto;
+}
+
+function salvarHistorico(conversao){
+    let historico = recuperaHistorico();
+
+    historico.push(conversao);
+    historico = JSON.stringify(historico);
+    localStorage.setItem("historico", historico);
 }
